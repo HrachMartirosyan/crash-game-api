@@ -1,0 +1,69 @@
+tags:
+- name: Crash Game
+  description: Crash GAME API
+
+paths:
+  /game/config:
+    get:
+      tags:
+      - game
+      summary: Game config (min, max amounts, bets template...)
+      consumes:
+        - application/json
+      parameters:
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+  /game/init:
+    post:
+      tags:
+        - game
+      summary: Init game and get sessionID
+      consumes:
+        - application/json
+      parameters:
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+  /player:
+    get:
+      tags:
+        - player
+      summary: Current player information
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: 'OK'
+        401:
+          description: 'Unauthorized'
+# definitions
+definitions:
+  player:
+    type: object
+    required:
+        - _id
+        - createdAt
+        - username
+        - balance
+    properties:
+      _id:
+        type: string
+        description: ID of the player
+      createdAt:
+        type: Date
+        description: Player created date
+      username:
+        type: string
+        description: Player username
+      balance:
+        type: number
+        description: Player balance
+
+schemes:
+ - https
+ - http
